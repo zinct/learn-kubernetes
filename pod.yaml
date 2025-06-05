@@ -25,3 +25,13 @@ spec:
       image: nginx:1.14.2
       ports:
         - containerPort: 80
+
+      # Probe
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 80
+        initialDelaySeconds: 5 # Mulai cek setelah 5 detik
+        periodSeconds: 10 # Cek ulang setiap 10 detik
+        successThreshold: 1 # berapa kali pengecekan  dinyatakan sukses
+        failureThreshold: 3 # berapa kali pengecekan dinyatakan gagal
