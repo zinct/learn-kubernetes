@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: indra-daemon
+spec:
+  selector:
+    matchLabels:
+      name: daemon-nginx
+  template:
+    metadata:
+      labels:
+        name: daemon-nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
